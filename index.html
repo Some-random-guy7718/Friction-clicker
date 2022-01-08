@@ -6,21 +6,21 @@
 <body>
 <script>
 var pressed = 0;
-var friction = 1;
-var frtx = document.createElement("p")
+var friction = 1;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+var frtx = document.createElement("p");
 var bt = document.createElement("button");
-frtx.innerHTML = "Your table has " + friction + " friction"
-bt.innerHTML = "You have decreased your table's friction " + pressed + " times"
+frtx.innerHTML = "Your table has " + friction + " friction";
+bt.innerHTML = "You have decreased your table's friction " + pressed + " times";
 document.body.appendChild(frtx);
 document.body.appendChild(bt);
-bt.onclick = function(){updateFriction()}
+bt.onclick = function(){updateFriction()};
 function updateFriction(){
   friction *= 0.99;
   frtx.innerHTML = "Your table has " + friction + " friction";
   pressed += 1;
-  bt.innerHTML = "You have decreased your table's friction " + pressed + " times"
+  bt.innerHTML = "You have decreased your table's friction " + pressed + " times";
   if (friction < 0.95)
-    alert('You have finished all the content currently implemented.')
+    alert('You have finished all the content currently implemented.');
 }
 </script>
 </body>
