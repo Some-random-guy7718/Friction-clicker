@@ -1,26 +1,29 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Friction clicker 0.1</title>
+<title>Friction clicker pre-alpha 0.2</title>
 </head>
 <body>
 <script>
 var pressed = 0;
-var friction = 1;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+var friction = 1;
 var frtx = document.createElement("p");
 var bt = document.createElement("button");
 frtx.innerHTML = "Your table has " + friction + " friction";
 bt.innerHTML = "You have decreased your table's friction " + pressed + " times";
 document.body.appendChild(frtx);
 document.body.appendChild(bt);
-bt.onclick = function(){updateFriction()};
-function updateFriction(){
+bt.onclick = updateFriction;
+
+function updateFriction() {
   friction *= 0.99;
+  if (friction < 0.9) {
+    alert('You have finished all the content currently implemented.');
+	return;
+	}
   frtx.innerHTML = "Your table has " + friction + " friction";
   pressed += 1;
   bt.innerHTML = "You have decreased your table's friction " + pressed + " times";
-  if (friction < 0.95)
-    alert('You have finished all the content currently implemented.');
 }
 </script>
 </body>
