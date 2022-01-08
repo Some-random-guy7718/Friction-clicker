@@ -16,14 +16,14 @@ document.body.appendChild(bt);
 bt.onclick = updateFriction;
 
 function updateFriction() {
-  friction *= 0.99;
-  if (friction < 0.9) {
-    alert('You have finished all the content currently implemented.');
-	return;
+	if (friction < 0.82) {
+		alert('You have finished all the content currently implemented.');
+		return;
 	}
-  frtx.innerHTML = "Your table has " + friction + " friction";
-  pressed += 1;
-  bt.innerHTML = "You have decreased your table's friction " + pressed + " times";
+	friction *= 0.99;
+	frtx.innerHTML = "Your table has " + friction + " friction";
+	pressed += 1;
+	bt.innerHTML = "You have decreased your table's friction " + pressed + " times";
 }
 </script>
 </body>
