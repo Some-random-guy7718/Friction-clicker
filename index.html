@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Friction clicker pre-alpha 0.3</title>
+<title>Friction clicker pre-alpha 0.31</title>
 </head>
 <body>
 <script>
 var pressed = 0;
 var friction = 1;
 var clickPower = 0.99;
-var u1Unlocked = false;
+var u1Bought = false;
 var btuAfter = Math.pow(clickPower,20);
 var frtx = document.createElement("p");
 var bt = document.createElement("button");
@@ -42,10 +42,11 @@ function updateFriction() {
 	return;
 }
 function upgrade() {
-	if (friction < 0.82){
-	friction = 1;
-	updateFriction();
-	return clickPower -= 0.01;
+	if (friction < 0.82 && u1Bought === false){
+		u1Bought = true;
+		friction /= btuAfter;
+		updateFriction();
+		return clickPower -= 0.01;
 	}
 }
 </script>
