@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Friction clicker pre-alpha 0.31</title>
+<title>Friction clicker pre-alpha 0.32</title>
 </head>
 <body>
 <script>
@@ -9,22 +9,23 @@ var pressed = 0;
 var friction = 1;
 var clickPower = 0.99;
 var u1Bought = false;
-var btuAfter = Math.pow(clickPower,20);
+var btu1After = Math.pow(clickPower,20);
+var btu1Change = clickPower - 0.01;
 var frtx = document.createElement("p");
 var bt = document.createElement("button");
-var btu = document.createElement("button");
+var btu1 = document.createElement("button");
 var lineBreak = document.createElement("br");
 frtx.innerHTML = "Your table has " + friction + " friction";
 bt.innerHTML = "You have decreased your table's friction " + pressed + " times";
-btu.innerHTML = "Decrease friction more on click but set your friction to " + friction/btuAfter + "(Only works if your friction is below 0.82)";
+btu1.innerHTML = "Decrease friction by " + btu1Change + " instead of " + clickPower + " (Only works if your friction is below 0.82)";
 
 
 document.body.appendChild(frtx);
 document.body.appendChild(bt);
 document.body.appendChild(lineBreak);
-document.body.appendChild(btu);
+document.body.appendChild(btu1);
 bt.onclick = clickFunction;
-btu.onclick = upgrade;
+btu1.onclick = upgrade;
 function clickFunction() {
 	if (friction < 0.55) {
 		alert('You have finished all the content currently implemented.');
@@ -38,16 +39,18 @@ function clickFunction() {
 function updateFriction() {
 	frtx.innerHTML = "Your table has " + friction + " friction";
 	bt.innerHTML = "You have decreased your table's friction " + pressed + " times";
-	btu.innerHTML = "Decrease friction more on click but set your friction to " + friction/btuAfter + "(Only works if your friction is below 0.82)";
+	btu1.innerHTML = "Decrease friction by " + btu1Change + " instead of " + clickPower + "(Only works if your friction is below 0.82)";
 	return;
 }
 function upgrade() {
 	if (friction < 0.82 && u1Bought === false){
 		u1Bought = true;
-		friction /= btuAfter;
+		friction /= btu1After;
 		updateFriction();
-		return clickPower -= 0.01;
+		clickPower -= 0.01;
+		return 
 	}
+	return;
 }
 </script>
 </body>
