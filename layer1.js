@@ -69,7 +69,7 @@ function updateFriction() {
         clickPower **= 10;
         u2Change **= 10;
         softCap1 = false;
-    } else if (friction < 0.9) {
+    } else if (friction < 0.05) {
         layer1End = true;
         alert("You feel that you can't possibly decrease your table's friction anymore. So you decide to play a better incremental game")
         clearInterval(u2Timer)
