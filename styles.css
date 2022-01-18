@@ -23,7 +23,7 @@ body {
     left: 48%;
 }
 
-.upgradeContainer {
+.genericContainer {
     font-size: 30px;
     background-color: grey;
     position: absolute;
@@ -44,7 +44,7 @@ body {
     top: 5%;
 }
 
-.layer2 {
+#layer1End {
     display: none;
     top: 40%;
 }

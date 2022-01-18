@@ -9,7 +9,7 @@ var u1Change = 0.99;
 var u2Change = 0.99;
 var u1Cost = 1.22;
 var u2Cost = 1.22;
-var u1Scaling = 2;
+var uScaling = 2;
 var u2Timer = setInterval(upgrade2Schedule, 500);
 var softCap1 = false;
 var s1Seen = false;
@@ -23,11 +23,11 @@ var u1 = document.createElement("button");
 var u2 = document.createElement("button");
 var br = document.createElement("br");
 // change element css
-frtx.className = "changingText";
-cltx.className = "changingText";
-upgradeText.className = "upgradeContainer";
-u1.className = "upgrade";
-u2.className = "upgrade";
+frtx.className = "changingText layer1";
+cltx.className = "changingText layer1";
+upgradeText.className = "genericContainer layer1";
+u1.className = "upgrade layer1";
+u2.className = "upgrade layer1";
 cltx.id = "clickedAmountText";
 u1.append("Decrease friction more.", br, "Cost: sets your friction to " + friction * u1Cost);
 u2.append("Automatically lower friction every second", br, "Cost: sets your friction to " + friction * u2Cost);
@@ -65,23 +65,20 @@ function updateFriction() {
         clickPower **= 0.1;
         u2Change **= 0.1;
         softCap1 = true;
-    }
-    if (friction > 0.1 && softCap1 === true) {
+    } else if (friction > 0.1 && softCap1 === true){
         clickPower **= 10;
         u2Change **= 10;
         softCap1 = false;
-    }
-    if (friction < 0.05) {
+    } else if (friction < 0.9) {
         layer1End = true;
-        clearInterval(u2Timer)
         alert("You feel that you can't possibly decrease your table's friction anymore. So you decide to play a better incremental game")
+        clearInterval(u2Timer)
         document.getElementById("bt").style.display = "none";
-        frtx.style.display = "none";
-        u1.style.display = "none";
-        u2.style.display = "none";
-        cltx.style.display = "none";
-        upgradeText.style.display = "none";
-        document.getElementById("endLayer1").style.display = "inline";
+        let layer1 = document.getElementsByClassName("layer1");
+        for (i = 0; i < layer1.length - 1; i++){
+            layer1[i].style.display = "none";
+            }
+        document.getElementById("layer1End").style.display = "block";
     }
     u1Stuff();
     u2Stuff();
@@ -103,24 +100,38 @@ function u2Stuff() {
 }
 
 function upgrade1() {
-    if (1 > friction * u1Cost) {
+    if (1 > friction * u1Cost && softCap1 === true) {
         u1BoughtAmount += 1;
         friction *= u1Cost;
+        u1Cost *= uScaling ** u1BoughtAmount;
+        clickPower **= 10
         clickPower *= u1Change;
-        u1Cost *= u1Scaling ** u1BoughtAmount;
-        updateFriction();
+        clickPower **= 0.1;
+    } else if (1 > friction * u1Cost && softCap1 === false) {
+        u1BoughtAmount += 1;
+        friction *= u1Cost;
+        u1Cost *= uScaling ** u1BoughtAmount;
+        clickPower *= u1Change;
     }
+    updateFriction();
     return;
 }
 
 function upgrade2() {
-    if (1 > friction * u2Cost) {
+    if (1 > friction * u2Cost && softCap1 === true) {
+        u2BoughtAmount += 1;
+        friction *= u2Cost;
+        u2Base **= 10
+        u2Base *= u2Change;
+        u2Base **= 0.1;
+        u2Cost *= uScaling ** u2BoughtAmount;
+    } else if (1 > friction * u2Cost && softCap1 === false) {
         u2BoughtAmount += 1;
         friction *= u2Cost;
         u2Base *= u2Change;
-        u2Cost *= u1Scaling ** u2BoughtAmount;
-        updateFriction();
+        u2Cost *= uScaling ** u2BoughtAmount;
     }
+    updateFriction();
     return;
 }
 
@@ -132,13 +143,12 @@ function upgrade2Schedule() {
 
 function endLayer1() {
     if (layer1End === true) {
-        document.getElementById("endLayer1").style.display = "none";
+        document.getElementById("layer1End").style.display = "none";
         var layer2Load1 = document.createElement("script");
-        layer2Load1.src = "layer2.js";
         var layer2Load2 = document.createElement("script");
+        layer2Load1.src = "layer2.js";
         layer2Load2.src = "break_eternity.js";
         document.body.appendChild(layer2Load1);
         document.body.appendChild(layer2Load2);
-
     }
 }
