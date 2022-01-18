@@ -13,18 +13,16 @@ var u1Scaling = 2;
 var u2Timer = setInterval(upgrade2Schedule, 500);
 var softCap1 = false;
 var s1Seen = false;
-var softCap2 = false;
-var s2Seen = false;
+var layer1End = false;
 // declare elements
+var bt = document.getElementById(bt);
 var upgradeText = document.createElement("div");
 var frtx = document.createElement("div");
 var cltx = document.createElement("div");
-var bt = document.createElement("button");
 var u1 = document.createElement("button");
 var u2 = document.createElement("button");
 var br = document.createElement("br");
 // change element css
-bt.className = "actionButton";
 frtx.className = "changingText";
 cltx.className = "changingText";
 upgradeText.className = "upgradeContainer";
@@ -34,21 +32,18 @@ cltx.id = "clickedAmountText";
 u1.append("Decrease friction more.", br, "Cost: sets your friction to " + friction * u1Cost);
 u2.append("Automatically lower friction every second", br, "Cost: sets your friction to " + friction * u2Cost);
 upgradeText.textContent = "Upgrades:";
-bt.textContent = "Decrease Friction";
 cltx.textContent = "You have manually decreased your friction " + pressed + " times";
 frtx.textContent = "Your table has " + friction + " friction";
-bt.title = "Click this button to multiply your current friction by " + clickPower;
 u1.title = "Multiply friction by " + clickPower * u1Change + " instead of " + "0.99" + "\nYou cannot buy this upgrade if it will put your friction above 1";
 u2.title = "Every second multiply your friction by " + u2Base * u2Change + " instead of " + u2Base + "\nYou cannot buy this upgrade if it will put your friction above 1";
 //Appending elements
 upgradeText.appendChild(u1);
 upgradeText.appendChild(u2);
 document.body.appendChild(frtx);
-document.body.appendChild(bt);
 document.body.appendChild(cltx);
 document.body.appendChild(upgradeText);
 // add on-click effects
-bt.onclick = clickFunction;
+
 u1.onclick = upgrade1;
 u2.onclick = upgrade2;
 
@@ -64,7 +59,7 @@ function updateFriction() {
     cltx.textContent = 'You have manually decreased your friction ' + pressed + ' times';
     if (friction < 0.1 && softCap1 === false) {
         if (s1Seen === false) {
-            alert("You feel as if it just became significantly harder to decrease your table's friction... Trying to progress further is not recommended");
+            alert("You feel as if it just became significantly harder to decrease your table's friction... Trying to progress further may have profitable consequences");
             s1Seen = true;
         }
         clickPower **= 0.1;
@@ -76,19 +71,17 @@ function updateFriction() {
         u2Change **= 10;
         softCap1 = false;
     }
-    if (friction < 0.01 && softCap2 === false) {
-        if (s2Seen === false) {
-            alert("Javascript doesn't have much precision to give your table's friction anymore, and would like to inform you that you shouldn't be here in the first place until the next update. :<");
-            s2Seen = true;
-        }
-        clickPower **= 0.001;
-        u2Change **= 0.001;
-        softCap2 = true;
-    }
-    if (friction > 0.01 && softCap2 === true) {
-        clickPower **= 1000;
-        u2Change **= 1000;
-        softCap2 = false;
+    if (friction < 0.05) {
+        layer1End = true;
+        clearInterval(u2Timer)
+        alert("You feel that you can't possibly decrease your table's friction anymore. So you decide to play a better incremental game")
+        document.getElementById("bt").style.display = "none";
+        frtx.style.display = "none";
+        u1.style.display = "none";
+        u2.style.display = "none";
+        cltx.style.display = "none";
+        upgradeText.style.display = "none";
+        document.getElementById("endLayer1").style.display = "inline";
     }
     u1Stuff();
     u2Stuff();
@@ -135,4 +128,17 @@ function upgrade2Schedule() {
     friction *= u2Base;
     updateFriction();
     return;
+}
+
+function endLayer1() {
+    if (layer1End === true) {
+        document.getElementById("endLayer1").style.display = "none";
+        var layer2Load1 = document.createElement("script");
+        layer2Load1.src = "layer2.js";
+        var layer2Load2 = document.createElement("script");
+        layer2Load2.src = "break_eternity.js";
+        document.body.appendChild(layer2Load1);
+        document.body.appendChild(layer2Load2);
+
+    }
 }

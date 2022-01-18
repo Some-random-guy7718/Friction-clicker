@@ -43,3 +43,8 @@ body {
 #clickedAmountText {
     top: 5%;
 }
+
+.layer2 {
+    display: none;
+    top: 40%;
+}
