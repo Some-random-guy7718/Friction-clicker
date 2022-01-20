@@ -2,6 +2,7 @@
 var layer2 = {
     tableAmount: 0
 };
+var bt = document.getElementById(bt);
 var lastTab = 1;
 // unhide this layer
 document.querySelector('#layer2Wrapper').className = "";
