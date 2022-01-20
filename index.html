@@ -8,8 +8,29 @@
 </head>
 
 <body>
-	<button id="bt" class="actionButton" title="Click this button to multiply your current friction by 0.99" onclick="clickFunction()">Decrease Friction</button>
-	<button id="layer1End" class="actionButton" onclick="endLayer1()">Play a better  incremental game</button>
+	<div id="layer1Wrapper">
+		<button id="bt" class="actionButton" title="Click this button to multiply your current friction by 0.99" onclick="clickFunction()">Decrease Friction</button>
+		<div id="frtx" class="changingText layer1"></div>
+		<div id="clickedAmountText" class="changingText layer1"></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<button id="layer1End" class="actionButton" onclick="endLayer1()">Play a better  incremental game</button>
+	</div>
+	<div id="layer2Wrapper" class="hidden">
+		<div id="tableAmountText" class="changingText layer2 main"></div>
+		<div id="tabContainer" class="tabContainer layer2 main">
+			<button class="tabButton" onclick="tabLoad(1)">Resources</button>
+			<button class="tabButton" onclick="tabLoad(2)">Options</button>
+			<button class="tabButton" onclick="tabLoad(3)">Stats</button>
+		</div>
+		<div id="resourcesHolder" class="genericContainer layer2 tab1">Resources:</div>
+		<div id="optionsHolder" class="genericContainer layer2 tab2 hidden">WiP</div>
+		<div id="statsHolder" class="genericContainer layer2 tab3 hidden">WiP</div>
+		<div id="shopHolder" class="genericContainer layer2 main">Shop:</div>
+
+
+	</div>
 </body>
 
 <script src="layer1.js">

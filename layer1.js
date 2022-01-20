@@ -17,18 +17,15 @@ var layer1End = false;
 // declare elements
 var bt = document.getElementById(bt);
 var upgradeText = document.createElement("div");
-var frtx = document.createElement("div");
-var cltx = document.createElement("div");
+var frtx = document.getElementById("frtx");
+var cltx = document.getElementById("clickedAmountText");
 var u1 = document.createElement("button");
 var u2 = document.createElement("button");
 var br = document.createElement("br");
 // change element css
-frtx.className = "changingText layer1";
-cltx.className = "changingText layer1";
 upgradeText.className = "genericContainer layer1";
 u1.className = "upgrade layer1";
 u2.className = "upgrade layer1";
-cltx.id = "clickedAmountText";
 u1.append("Decrease friction more.", br, "Cost: sets your friction to " + friction * u1Cost);
 u2.append("Automatically lower friction every second", br, "Cost: sets your friction to " + friction * u2Cost);
 upgradeText.textContent = "Upgrades:";
@@ -36,12 +33,13 @@ cltx.textContent = "You have manually decreased your friction " + pressed + " ti
 frtx.textContent = "Your table has " + friction + " friction";
 u1.title = "Multiply friction by " + clickPower * u1Change + " instead of " + "0.99" + "\nYou cannot buy this upgrade if it will put your friction above 1";
 u2.title = "Every second multiply your friction by " + u2Base * u2Change + " instead of " + u2Base + "\nYou cannot buy this upgrade if it will put your friction above 1";
+// uhh
+var layer1Wrapper = document.getElementsByClassName("layer1Wrapper");
 //Appending elements
 upgradeText.appendChild(u1);
 upgradeText.appendChild(u2);
-document.body.appendChild(frtx);
-document.body.appendChild(cltx);
-document.body.appendChild(upgradeText);
+document.getElementById("layer1Wrapper").appendChild(cltx);
+document.getElementById("layer1Wrapper").appendChild(upgradeText);
 // add on-click effects
 
 u1.onclick = upgrade1;
@@ -71,8 +69,8 @@ function updateFriction() {
         softCap1 = false;
     } else if (friction < 0.05) {
         layer1End = true;
-        alert("You feel that you can't possibly decrease your table's friction anymore. So you decide to play a better incremental game")
-        clearInterval(u2Timer)
+        alert("You feel that you can't possibly decrease your table's friction anymore. So you decide to play a better incremental game");
+        clearInterval(u2Timer);
         document.getElementById("bt").style.display = "none";
         let layer1 = document.getElementsByClassName("layer1");
         for (i = 0; i < layer1.length - 1; i++){
