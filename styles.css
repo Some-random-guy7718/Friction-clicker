@@ -36,6 +36,14 @@ body {
     left: 48%;
 }
 
+#clickedAmountText {
+    top: 5%;
+}
+
+#tableAmountText {
+    top: 5%;
+}
+
 .genericContainer {
     font-size: 30px;
     background-color: grey;
@@ -63,19 +71,46 @@ body {
     border-color: gold;
 }
 
-#clickedAmountText {
-    top: 5%;
-}
-
 #layer1End {
     display: none;
     top: 40%;
 }
 
-.hidden{
+.hidden {
     display: none;
 }
 
-#shopHolder{
+#shopHolder {
     left: 80%;
+}
+
+#sellTable {
+    font-size: 22px;
+    background-color: rgb(160, 160, 160);
+    height: 150px;
+    width: 150px;
+}
+
+#sellTable #sellTableButton {
+    position: relative;
+    top: 0%;
+    left: 0;
+    height: 50px;
+    width: 150px;
+}
+
+.progressBar {
+    height: 50px;
+    width: 150px;
+    background-color: white;
+}
+
+#sellTableFill {
+    background-color: rgb(0, 225, 255);
+    height: 50px;
+    width: 0%;
+}
+
+#skip {
+    top: 90%;
 }

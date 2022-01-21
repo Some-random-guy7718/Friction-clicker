@@ -3,7 +3,7 @@
 
 <head>
 	<meta charset="utf-8"/>
-	<title>Friction clicker alpha 0.14</title>
+	<title>Friction clicker alpha 0.2</title>
 	<link rel="stylesheet" href="styles.css">
 </head>
 
@@ -15,11 +15,12 @@
 		<div id="upgradeHolder" class="genericContainer layer1">Upgrades:
 			<button id="u1" class="upgrade layer1" onclick="upgrade1()"></button>
 			<button id="u2" class="upgrade layer1" onclick="upgrade2()""></button>
-		</div>
-		<div></div>
+		</div>>
+		<button id="skip" class="actionButton" onclick="skip(true)">Click me to skip this part of the game</button>
 	</div>
 	<button id="layer1End" class="actionButton" onclick="endLayer1()">Play a better  incremental game</button>
 	<div id="layer2Wrapper" class="hidden">
+		<div id="moneyAmountText" class="changingText layer2 main"></div>
 		<div id="tableAmountText" class="changingText layer2 main"></div>
 		<div id="tabContainer" class="tabContainer layer2 main">
 			<button class="tabButton" onclick="tabLoad(1)">Resources</button>
@@ -29,7 +30,17 @@
 		<div id="resourcesHolder" class="genericContainer layer2 tab1">Resources:</div>
 		<div id="optionsHolder" class="genericContainer layer2 tab2 hidden">WiP</div>
 		<div id="statsHolder" class="genericContainer layer2 tab3 hidden">WiP</div>
-		<div id="shopHolder" class="genericContainer layer2 main">Shop:</div>
+		<div id="shopHolder" class="genericContainer layer2 main">
+			<div>Shop:</div>
+			<div id="sellTable" class="layer2 main">
+				<div>Sell a table for $1</div>
+				<button id="sellTableButton" class="actionButton" onclick="sell('table')">Click me</button>
+				<div id="sellTableBar" class="progressBar">
+					<div id="sellTableFill"></div>
+				</div>
+			</div>
+			
+		</div>
 
 
 	</div>

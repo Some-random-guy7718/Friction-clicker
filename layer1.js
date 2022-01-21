@@ -48,7 +48,7 @@ function updateFriction() {
         clickPower **= 0.1;
         u2Change **= 0.1;
         softCap1 = true;
-    } else if (friction > 0.1 && softCap1 === true){
+    } else if (friction > 0.1 && softCap1 === true) {
         clickPower **= 10;
         u2Change **= 10;
         softCap1 = false;
@@ -131,4 +131,12 @@ function endLayer1() {
         document.body.appendChild(layer2Load1);
         document.body.appendChild(layer2Load2);
     }
+}
+
+function skip(a) {
+    if (a == true)
+        friction = 0.049;
+    s1Seen = true;
+    updateFriction();
+    return;
 }
