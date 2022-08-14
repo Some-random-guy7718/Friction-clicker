@@ -41,7 +41,11 @@ body {
 }
 
 #tableAmountText {
-    top: 5%;
+    top: 4%;
+}
+
+#morbAmountText {
+    top: 7%;
 }
 
 .genericContainer {
@@ -85,10 +89,7 @@ body {
 }
 
 #sellTable {
-    font-size: 22px;
     background-color: rgb(160, 160, 160);
-    height: 150px;
-    width: 150px;
 }
 
 #sellTable #sellTableButton {
@@ -99,18 +100,57 @@ body {
     width: 150px;
 }
 
-.progressBar {
-    height: 50px;
-    width: 150px;
-    background-color: white;
-}
-
 #sellTableFill {
     background-color: rgb(0, 225, 255);
-    height: 50px;
+    height: 35px;
     width: 0%;
+    border-radius: 50px;
+}
+
+#buyMorbFill {
+    background-color: rgb(0, 225, 255);
+    height: 35px;
+    width: 0%;
+    border-radius: 50px;
+}
+
+#buyMorb {
+    font-size: 22px;
+    background-color: rgb(140, 140, 140);
+    height: 150px;
+    width: 150px;
+}
+
+#buyMorb #buyMorbButton {
+    position: relative;
+    top: 0%;
+    left: 0;
+    height: 50px;
+    width: 150p
+}
+
+.progressBar {
+    height: 35px;
+    width: 150px;
+    background-color: white;
+    border-radius: 50px;
 }
 
 #skip {
     top: 90%;
+}
+
+.shopItem {
+    font-size: 22px;
+    height: 150px;
+    width: 150px;
+}
+
+#shop3 {
+    background-color: rgb(160, 160, 160);
+}
+
+#bt2 {
+    top: 35%;
+    left: 47%;
 }

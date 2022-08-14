@@ -3,7 +3,7 @@
 
 <head>
 	<meta charset="utf-8"/>
-	<title>Friction clicker alpha 0.2</title>
+	<title>Friction clicker alpha 0.3</title>
 	<link rel="stylesheet" href="styles.css">
 </head>
 
@@ -20,8 +20,10 @@
 	</div>
 	<button id="layer1End" class="actionButton" onclick="endLayer1()">Play a better  incremental game</button>
 	<div id="layer2Wrapper" class="hidden">
+		<button id="bt2" class="actionButton morbUse hidden" onclick="morbInteract(1, 'placeHolder')">Send a Morb off to collect stuff for you</button>
 		<div id="moneyAmountText" class="changingText layer2 main"></div>
 		<div id="tableAmountText" class="changingText layer2 main"></div>
+		<div id="morbAmountText" class="changingText layer2 main"></div>
 		<div id="tabContainer" class="tabContainer layer2 main">
 			<button class="tabButton" onclick="tabLoad(1)">Resources</button>
 			<button class="tabButton" onclick="tabLoad(2)">Options</button>
@@ -29,20 +31,29 @@
 		</div>
 		<div id="resourcesHolder" class="genericContainer layer2 tab1">Resources:</div>
 		<div id="optionsHolder" class="genericContainer layer2 tab2 hidden">WiP</div>
-		<div id="statsHolder" class="genericContainer layer2 tab3 hidden">WiP</div>
+		<div id="statsHolder" class="genericContainer layer2 tab3 hidden">
+			<div style="height:50px">Statistics:</div>
+			<div id="statList"></div> 
+		</div>
 		<div id="shopHolder" class="genericContainer layer2 main">
-			<div>Shop:</div>
-			<div id="sellTable" class="layer2 main">
+			<div style="height:50px">Shop:</div>
+			<div id="sellTable" class="layer2 main shopItem">
 				<div>Sell a table for $1</div>
-				<button id="sellTableButton" class="actionButton" onclick="sell('table')">Click me</button>
+				<button id="sellTableButton" class="actionButton" onclick="shopInteract(xAmount, 'table')">Click me</button>
+				<div style="width:150px; height:5px"></div>
 				<div id="sellTableBar" class="progressBar">
 					<div id="sellTableFill"></div>
 				</div>
 			</div>
-			
+			<div id="buyMorb" class="layer2 main">
+				<div>Buy... something?</div>
+				<button id="buyMorbButton" class="actionButton" onclick="shopInteract(xAmount, 'morb')">placeholder text</button>
+				<div id="buyMorbBar" class="progressBar">
+					<div id="buyMorbFill"></div>
+				</div>
+			</div>
+			<div class="layer2 main shopItem" id="shop3"></div>
 		</div>
-
-
 	</div>
 </body>
 
