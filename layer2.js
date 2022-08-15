@@ -12,6 +12,7 @@ var lastTab = 1;
 var incrementTableComplete = true;
 var incrementMorbComplete = true;
 var xAmount = 1;
+var morbed = false;
 var effectHappening = 0;
 // unhide this layer
 document.querySelector('#layer2Wrapper').className = "";
@@ -73,44 +74,49 @@ function shopInteract(int, what) {
     return;
 }
 
-function increment(t, what) {
-    if (what == "table" && t < 100) {
-        t++;
-        document.getElementById("sellTableFill").style.width = t + "%";
-        let incrementTableTimer = setTimeout(increment, 10, t, 'table');
-    } else if (t == 100) {
-        document.getElementById("sellTableFill").style.width = 0 + "%";
-        layer2.moneyAmount += 1;
-        moneyAmountText.textContent = "You have " + layer2.moneyAmount + " dollars";
-        incrementTableComplete = true;
+function increment(t, w) {
+    switch(true){
+        case (w == 'table' && t == 100):
+            document.getElementById("sellTableFill").style.width = 0 + "%";
+            layer2.moneyAmount += 1;
+            moneyAmountText.textContent = "You have " + layer2.moneyAmount + " dollars";
+            incrementTableComplete = true;
+            break;
+        case (w == 'table' && t < 100):
+            t++;
+            document.getElementById("sellTableFill").style.width = t + "%";
+            var incrementTableTimer = setTimeout(increment, 10, t, 'table');
+            break;
+        case (w == 'morb' && t == 100):
+            document.getElementById("buyMorbFill").style.width = 0 + "%";
+            layer2.morbAmount += 1;
+            moneyAmountText.textContent = "You have " + layer2.moneyAmount + " dollars";
+            morbAmountText.textContent = "You have " + layer2.morbAmount + " Morbs";
+            document.getElementById("bt2").classList.remove("hidden")
+            incrementMorbComplete = true;
+            morbed = true;
+            break;
+        case (w == 'morb' && t < 100):
+            t++;
+            document.getElementById("buyMorbFill").style.width = t + "%";
+            var incrementMorbTimer = setTimeout(increment, 10, t, 'morb');
+            break;
+        default: console.log('uh oh')
     }
-    if (what == "morb" && t < 100) {
-        t++;
-        document.getElementById("buyMorbFill").style.width = t + "%";
-        let incrementMorbTimer = setTimeout(increment, 10, t, 'morb');
-    } else if (what == "morb" && t == 100) {
-        document.getElementById("buyMorbFill").style.width = 0 + "%";
-        layer2.moneyAmount -= 1;
-        layer2.morbAmount += 1;
-        moneyAmountText.textContent = "You have " + layer2.moneyAmount + " dollars";
-        morbAmountText.textContent = "You have " + layer2.morbAmount + " Morbs";
-        document.getElementById("bt2").classList.remove("hidden")
-        incrementMorbComplete = true;
+    if(morbed == true){
+        document.querySelector("#buyMorb").childNodes[1].innerHTML = "Buy " + xAmount + " Morb for " + Math.floor(1 * 1.1 ** layer2.morbAmount) + " dollar"
+        document.querySelector("#morbInsurance").classList.remove("hidden")
     }
     return;
 }
-var randomSeed = Math.floor(Math.random() * 7);
+var randomSeed = Math.floor(Math.random() * 101);
 function morbInteract(int, what){
-    if (layer2.tablesForaged == 10 && layer2.tableAmount == 0 && layer2.moneyAmount == 0 && layer2.morbAmount == 0) {
-        console.log("Congratulations, you just softlocked yourself due to bad rng")
-        return;
-    }
     if (layer2.morbAmount >= 1){
-        if (randomSeed > 4){
+        if (randomSeed >= 55){
             layer2.tableAmount += 1
             tableAmountText.textContent = "You have " + layer2.tableAmount + " tables";
             console.log('Your Morb "found" a table!')
-        } else if (randomSeed > 1) {
+        } else if (randomSeed >= 10) {
             layer2.moneyAmount +=1
             moneyAmountText.textContent = "You have " + layer2.moneyAmount + " dollars";
             console.log("Your Morb stole someone's dollar!")
@@ -120,7 +126,7 @@ function morbInteract(int, what){
             console.log("Your Morb died horribly :(")
         }
     }
-    randomSeed = Math.floor(Math.random() * 7);
+    randomSeed = Math.floor(Math.random() * 101);
     return;
 }
 

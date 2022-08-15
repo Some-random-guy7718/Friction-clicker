@@ -3,7 +3,7 @@
 
 <head>
 	<meta charset="utf-8"/>
-	<title>Friction clicker alpha 0.3</title>
+	<title>Friction clicker alpha 0.32</title>
 	<link rel="stylesheet" href="styles.css">
 </head>
 
@@ -39,20 +39,28 @@
 			<div style="height:50px">Shop:</div>
 			<div id="sellTable" class="layer2 main shopItem">
 				<div>Sell a table for $1</div>
-				<button id="sellTableButton" class="actionButton" onclick="shopInteract(xAmount, 'table')">Click me</button>
+				<button id="sellTableButton" class="shopButton actionButton" onclick="shopInteract(xAmount, 'table')">Click me</button>
 				<div style="width:150px; height:5px"></div>
 				<div id="sellTableBar" class="progressBar">
-					<div id="sellTableFill"></div>
+					<div id="sellTableFill" class="fillBar"></div>
 				</div>
 			</div>
-			<div id="buyMorb" class="layer2 main">
+			<div id="buyMorb" class="layer2 main shopItem">
 				<div>Buy... something?</div>
-				<button id="buyMorbButton" class="actionButton" onclick="shopInteract(xAmount, 'morb')">placeholder text</button>
+				<button id="buyMorbButton" class="shopButton actionButton" onclick="shopInteract(xAmount, 'morb')">placeholder text</button>
+				<div style="width:150px; height:5px"></div>
 				<div id="buyMorbBar" class="progressBar">
-					<div id="buyMorbFill"></div>
+					<div id="buyMorbFill" class="fillBar"></div>
 				</div>
 			</div>
-			<div class="layer2 main shopItem" id="shop3"></div>
+			<div id="morbInsurance" class="layer2 main shopItem hidden">
+				<div>Buy Insurance for your Morbs</div>
+				<button id="buyMorbInsuranceButton" class="shopButton actionButton" onclick="shopInteract(xAmount, 'morbInsurance')">placeholder text</button>
+				<div style="width:150px; height:5px"></div>
+				<div id="buyMorbInsuranceBar" class="progressBar">
+					<div id="buyMorbInsuranceFill" class="fillBar"></div>
+				</div>
+			</div>
 		</div>
 	</div>
 </body>
