@@ -1,140 +1,128 @@
+#start {
+    --color-text: #e0e0e0;
+    --color-text-inverted: black;
+    --color-base: #455a64;
+    --color-disabled: #37474f;
+    --color-accent: #1256a3;
+    --color-good: #5ac467;
+    --color-good-dark: #127a20;
+    --color-good-paused: #e3e638;
+    --color-bad: #b84b5f;
+    --color-unsed-purple: #8957e5;
+}
+
+html {
+    scrollbar-color: grey transparent;
+}
 body {
-    background-color: #535353;
+    background-color: #1d1d1d;
 }
-
-.actionButton {
-    text-align: center;
-    height: 100px;
-    position: absolute;
-    top: 20%;
-    left: 50%;
-    border-radius: 25px;
-    border-color: black;
-    transition-duration: 100ms;
-}
-
-.actionButton:active {
-    background-color: #cccccc;
-}
-
-.tabButton {
-    background-color: aliceblue;
-    border-color: black;
-    border-radius: 10px;
-    height: 50px;
-    width: 95px;
-    transition-duration: 100ms;
-}
-
-.tabButton:active {
-    background-color: #cccccc;
-}
-
-.changingText {
-    text-align: center;
-    position: absolute;
-    left: 48%;
-    outline:rgb(202, 202, 202);
-}
-
-#clickedAmountText {
-    top: 5%;
-}
-
-#tableAmountText {
-    top: 4%;
-}
-
-#morbAmountText {
-    top: 7%;
-}
-
-.genericContainer {
-    font-size: 30px;
-    background-color: grey;
-    position: absolute;
-    top: 20%;
-    left: 5%;
-    width: 300px;
-    height: 500px;
-}
-
-.tabContainer {
-    font-size: 30px;
-    background-color: rgb(202, 202, 202);
-    position: absolute;
-    top: 5%;
-    left: 5%;
-    width: 300px;
-    height: 50px;
-}
-
-.upgrade {
-    width: 300px;
-    height: 50px;
-    border-radius: 5px;
-    border-color: gold;
-}
-
-#layer1End {
-    display: none;
-    top: 40%;
-}
-
 .hidden {
     display: none;
 }
 
-#shopHolder {
-    left: 80%;
+.primary-button {
+    transition-duration: 200ms;
+    border: 0.1rem solid #5ac467;
+    border-radius: 1rem;
+    color: var(--color-text);
+    background-color: var(--color-base);
+    font-weight: bold;
+    font-size: 1.3rem;
 }
-
-#sellTable {
-    background-color: rgb(160, 160, 160);
+.primary-button:disabled {
+    border-color: var(--color-bad);
 }
-
-.shopButton {
-    position: relative;
-    top: 0%;
-    left: 0;
+.primary-button:hover {
+    color: var(--color-text-inverted);
+    background-color: var(--color-good);
+}
+.primary-button:disabled:hover {
+    background-color: var(--color-bad);
+}
+.primary-button-small {
     height: 50px;
-    width: 150px;
+    width: 45%;
+    font-size: 1rem;
+    margin-right: 10%;
+}
+.primary-button-bar-ari {
+    font-size: 1.3rem;
+    height: 50px;
+    width: 25rem;
+    display: flex;
 }
 
-.fillBar {
-    background-color: rgb(0, 225, 255);
-    height: 35px;
-    width: 0%;
-    border-radius: 50px;
-}
-
-#buyMorb {
-    background-color: rgb(140, 140, 140);
-}
-
-
-.progressBar {
-    height: 35px;
-    width: 150px;
+.fill-bar {
+    height: 100%;
+    width: 45%;
     background-color: white;
-    border-radius: 50px;
+}
+.fill-bar-filled {
+    height: 100%;
+    background-color: #5ac467;;
 }
 
-#skip {
-    top: 90%;
+#forage-table-btn {
+    height: 100px;
+    position: absolute;
+    top: 25rem;
+    left: 50vw;
+    width: 25rem;
+    margin-left: -200px;
 }
 
-.shopItem {
-    font-size: 22px;
-    height: 150px;
-    width: 150px;
+#sell-table {
+    position: absolute;
+    top: 23rem;
+    left: 70vw;
+}
+/*sellTableBar
+#sellTableFill {
+    width: 0%;
+}*/
+
+#buy-morb {
+    position: absolute;
+    top: 30rem;
+    left: 70vw;
+}
+/*#buy-morb-bar {
+}
+#buy-morb-fill {
+}
+*/
+
+#table-amount-text {
+    position: absolute;
+    left: calc(50% - 25rem);
+    width: 50rem;
+    top: 6rem;
+    color: var(--color-text);
+    text-align: center;
+    font-size: 1.1rem;
+}
+#table-amount {
+    font-size: 2.5rem;
 }
 
-#morbInsurance {
-    background-color: rgb(160, 160, 160);
+#log {
+    width: 25rem;
+    height: 600px;
+    background: #35454d;
+    left: 3vw;
+    position: absolute;
+    top: 9.375rem;
+    border: solid .1rem gray;
+    border-radius: 1rem;
+    overflow-y: scroll;
 }
-
-#bt2 {
-    top: 35%;
-    left: 47%;
+.log-message {
+    display: block;
+    font-size: 1.3rem;
+    color: var(--color-text);
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    white-space-collapse: preserve;
 }

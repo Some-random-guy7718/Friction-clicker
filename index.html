@@ -2,70 +2,60 @@
 <html>
 
 <head>
+
 	<meta charset="utf-8"/>
-	<title>Friction clicker alpha 0.32</title>
+	<title>Friction clicker post-pre-alpha 2 - 2 + 0.34</title>
 	<link rel="stylesheet" href="styles.css">
+	<script src="js/break_eternity.js"></script>
+	<script src="js/start.js"></script>
+	
 </head>
 
 <body>
-	<button id="bt" class="actionButton" title="Click this button to multiply your current friction by 0.99" onclick="clickFunction()">Decrease Friction</button>
-	<div id="layer1Wrapper">
-		<div id="frtx" class="changingText layer1"></div>
-		<div id="clickedAmountText" class="changingText layer1"></div>
-		<div id="upgradeHolder" class="genericContainer layer1">Upgrades:
-			<button id="u1" class="upgrade layer1" onclick="upgrade1()"></button>
-			<button id="u2" class="upgrade layer1" onclick="upgrade2()""></button>
-		</div>>
-		<button id="skip" class="actionButton" onclick="skip(true)">Click me to skip this part of the game</button>
-	</div>
-	<button id="layer1End" class="actionButton" onclick="endLayer1()">Play a better  incremental game</button>
-	<div id="layer2Wrapper" class="hidden">
-		<button id="bt2" class="actionButton morbUse hidden" onclick="morbInteract(1, 'placeHolder')">Send a Morb off to collect stuff for you</button>
-		<div id="moneyAmountText" class="changingText layer2 main"></div>
-		<div id="tableAmountText" class="changingText layer2 main"></div>
-		<div id="morbAmountText" class="changingText layer2 main"></div>
-		<div id="tabContainer" class="tabContainer layer2 main">
-			<button class="tabButton" onclick="tabLoad(1)">Resources</button>
-			<button class="tabButton" onclick="tabLoad(2)">Options</button>
-			<button class="tabButton" onclick="tabLoad(3)">Stats</button>
-		</div>
-		<div id="resourcesHolder" class="genericContainer layer2 tab1">Resources:</div>
-		<div id="optionsHolder" class="genericContainer layer2 tab2 hidden">WiP</div>
-		<div id="statsHolder" class="genericContainer layer2 tab3 hidden">
-			<div style="height:50px">Statistics:</div>
-			<div id="statList"></div> 
-		</div>
-		<div id="shopHolder" class="genericContainer layer2 main">
-			<div style="height:50px">Shop:</div>
-			<div id="sellTable" class="layer2 main shopItem">
-				<div>Sell a table for $1</div>
-				<button id="sellTableButton" class="shopButton actionButton" onclick="shopInteract(xAmount, 'table')">Click me</button>
-				<div style="width:150px; height:5px"></div>
-				<div id="sellTableBar" class="progressBar">
-					<div id="sellTableFill" class="fillBar"></div>
-				</div>
+	<div id="start">
+		
+		<div id="table-amount-text">
+			<div>
+				You have 
+				<span id="table-amount">0</span>
+				tables
 			</div>
-			<div id="buyMorb" class="layer2 main shopItem">
+			<div>
+				and
+				<span id="money-amount">0</span>
+				money
+			</div>
+			<div id="morb-amount-container" style="display: none;">
+				as well as
+				<span id="morb-amount">0</span>
+				morbs
+			</div>
+		</div>
+
+		<div id="log">
+		</div>
+
+		<button id="forage-table-btn" class="primary-button" onclick="forageTable()">Forage for tables</button>
+
+		<div id="sell-table" class="primary-button-bar-ari">
+			<button id="sell-table-button" class="primary-button-small primary-button" onclick="shopInteract('table')">
+				<div>Sell 1 table</div>
+			</button>
+			<div id="sell-table-bar" class="fill-bar">
+				<div id="table-fill" class="fill-bar-filled" style="width: 0%;"></div>
+			</div>
+		</div>
+
+		<div id="buy-morb" class="primary-button-bar-ari">
+			<button id="buy-morb-button" class="primary-button-small primary-button" onclick="shopInteract('morb')">
 				<div>Buy... something?</div>
-				<button id="buyMorbButton" class="shopButton actionButton" onclick="shopInteract(xAmount, 'morb')">placeholder text</button>
-				<div style="width:150px; height:5px"></div>
-				<div id="buyMorbBar" class="progressBar">
-					<div id="buyMorbFill" class="fillBar"></div>
-				</div>
-			</div>
-			<div id="morbInsurance" class="layer2 main shopItem hidden">
-				<div>Buy Insurance for your Morbs</div>
-				<button id="buyMorbInsuranceButton" class="shopButton actionButton" onclick="shopInteract(xAmount, 'morbInsurance')">placeholder text</button>
-				<div style="width:150px; height:5px"></div>
-				<div id="buyMorbInsuranceBar" class="progressBar">
-					<div id="buyMorbInsuranceFill" class="fillBar"></div>
-				</div>
+				<div id="morb-cost-current">Cost: 2 money</div>
+			</button>
+			<div id="buy-morb-bar" class="fill-bar">
+				<div id="morb-fill" class="fill-bar-filled" style="width: 0%;"></div>
 			</div>
 		</div>
+
 	</div>
 </body>
-
-<script src="layer1.js">
-</script>
-
 </html>
