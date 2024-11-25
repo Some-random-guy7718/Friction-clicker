@@ -4,7 +4,7 @@
 <head>
 
 	<meta charset="utf-8"/>
-	<title>Friction clicker post-pre-alpha 2 - 2 + 0.34</title>
+	<title>Friction clicker post-pre-alpha 2 - 2 + 0.366</title>
 	<link rel="stylesheet" href="styles.css">
 	<script src="js/break_eternity.js"></script>
 	<script src="js/start.js"></script>
@@ -32,13 +32,13 @@
 			</div>
 		</div>
 
-		<div id="log">
+		<div class="log">
 		</div>
 
-		<button id="forage-table-btn" class="primary-button" onclick="forageTable()">Forage for tables</button>
+		<button id="forage-table-button" class="primary-button" onclick="forageTable()">Forage for tables</button>
 
-		<div id="sell-table" class="primary-button-bar-ari">
-			<button id="sell-table-button" class="primary-button-small primary-button" onclick="shopInteract('table')">
+		<div id="sell-table" class="primary-button-bar-tsuki">
+			<button id="sell-table-button" class="primary-button-small primary-button" onclick="shopInteract('table')" disabled>
 				<div>Sell 1 table</div>
 			</button>
 			<div id="sell-table-bar" class="fill-bar">
@@ -46,8 +46,8 @@
 			</div>
 		</div>
 
-		<div id="buy-morb" class="primary-button-bar-ari">
-			<button id="buy-morb-button" class="primary-button-small primary-button" onclick="shopInteract('morb')">
+		<div id="buy-morb" class="primary-button-bar-tsuki">
+			<button id="buy-morb-button" class="primary-button-small primary-button" onclick="shopInteract('morb')" disabled>
 				<div>Buy... something?</div>
 				<div id="morb-cost-current">Cost: 2 money</div>
 			</button>

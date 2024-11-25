@@ -1,18 +1,14 @@
-#start {
+html {
+    --sidebar-width: 24rem;
+    scrollbar-color: grey transparent;
     --color-text: #e0e0e0;
     --color-text-inverted: black;
-    --color-base: #455a64;
-    --color-disabled: #37474f;
-    --color-accent: #1256a3;
-    --color-good: #5ac467;
-    --color-good-dark: #127a20;
-    --color-good-paused: #e3e638;
-    --color-bad: #b84b5f;
-    --color-unsed-purple: #8957e5;
-}
-
-html {
-    scrollbar-color: grey transparent;
+    --color-base: #335577;
+    --color-blue: #1256a3;
+    --color-green: #50cc00;
+    --color-green-dark: #228855;
+    --color-red: #c20a0a;
+    --color-purple: #7956c0;
 }
 body {
     background-color: #1d1d1d;
@@ -31,14 +27,14 @@ body {
     font-size: 1.3rem;
 }
 .primary-button:disabled {
-    border-color: var(--color-bad);
+    border-color: var(--color-red);
 }
 .primary-button:hover {
     color: var(--color-text-inverted);
-    background-color: var(--color-good);
+    background-color: var(--color-green);
 }
 .primary-button:disabled:hover {
-    background-color: var(--color-bad);
+    background-color: var(--color-red);
 }
 .primary-button-small {
     height: 50px;
@@ -46,7 +42,7 @@ body {
     font-size: 1rem;
     margin-right: 10%;
 }
-.primary-button-bar-ari {
+.primary-button-bar-tsuki {
     font-size: 1.3rem;
     height: 50px;
     width: 25rem;
@@ -63,7 +59,7 @@ body {
     background-color: #5ac467;;
 }
 
-#forage-table-btn {
+#forage-table-button {
     height: 100px;
     position: absolute;
     top: 25rem;
@@ -106,10 +102,10 @@ body {
     font-size: 2.5rem;
 }
 
-#log {
+.log {
     width: 25rem;
     height: 600px;
-    background: #35454d;
+    background: var(--color-base);
     left: 3vw;
     position: absolute;
     top: 9.375rem;

@@ -12,7 +12,7 @@ let tablesForaged = 0;
 let tableCap = 20;
 let moneyCap = 1000;
 let morbCap = 161700;
-let tablesForagedCap = areaOwned/5;
+let tablesForagedCap = areaOwned/5; //20
 
 // morb usage
 let morbsUnused = 0;
@@ -59,20 +59,14 @@ let microGusts = [];
 let elements = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
 
 
-// 1 = didn't get table, 2 = no table to sell, 3 = not enough money, 4 = bar is filling
+// 1 = didn't get table, 2 = bar is filling
+var previousMessageNumber = 0;
 let logMessage1 = document.createElement('span');
 let logMessage1Repeated = 1;
 logMessage1.className = 'log-message';
 let logMessage2 = document.createElement('span');
 let logMessage2Repeated = 1;
 logMessage2.className = 'log-message';
-let logMessage3 = document.createElement('span');
-let logMessage3Repeated = 1;
-logMessage3.className = 'log-message';
-let logMessage4 = document.createElement('span');
-let logMessage4Repeated = 1;
-logMessage4.className = 'log-message';
-let previousMessageNumber = 0;
 
 const time = parseInt(Date.now());
 var timeElapsed = time;
@@ -148,42 +142,37 @@ logMessage1.className = 'logMessage';
 let logMessage2 = document.createElement('span');
 let logMessage2Repeated = 1;
 logMessage2.className = 'logMessage';
-let logMessage3 = document.createElement('span');
-let logMessage3Repeated = 1;
-logMessage3.className = 'logMessage';
-let logMessage4 = document.createElement('span');
-let logMessage4Repeated = 1;
-logMessage4.className = 'logMessage';
-let previousMessageNumber = 0;
 
 let timeElapsed = time;
 let morbed = false;
     return;
 }
 
-function updateTime(){
+function updateTime() {
     return timeElapsed = parseInt(Date.now()) - time;
 }
 const updateTimeInterval = setInterval(updateTime, gameUpdateSpeed);
 
-function forageTable(){
+function forageTable() {
     if (tablesForagedCap <= tablesForaged ){
+		previousMessageNumber = 1;
         logMessage1.innerHTML = "You don't think you are going to find any more tables...";
-        document.getElementById('log').prepend(logMessage1);
-        console.log("You don't think you are going to find any more tables...");
+        document.getElementsByClassName('log')[0].prepend(logMessage1);
+        document.getElementById("forage-table-button").disabled = true;
     } else if (tableCap*Math.random() >= tablesForaged) {
         tableAmount += 1;
         tablesForaged += 1;
+        document.getElementById("sell-table-button").disabled = false;
         document.getElementById("table-amount").innerHTML = tableAmount;
     } else {
-        if (logMessage1.innerHTML.slice(28,30) === (Math.floor(100*(tablesForaged/tablesForagedCap)).toString())){
+        if (previousMessageNumber === 1){
             logMessage1Repeated += 1;
             logMessage1.innerHTML = "You didn't find any tables (" + Math.floor(100*(tablesForaged/tablesForagedCap)) + "%) (" + logMessage1Repeated + ")";
-            return document.getElementById('log').prepend(logMessage1);
+            return document.getElementsByClassName('log')[0].prepend(logMessage1);
         }
         logMessage1Repeated = 1;
         logMessage1.innerHTML = "You didn't find any tables (" + Math.floor(100*(tablesForaged/tablesForagedCap)) + "%)";
-        document.getElementById('log').prepend(logMessage1);
+        document.getElementsByClassName('log')[0].prepend(logMessage1);
     }
     return;
 }
@@ -193,15 +182,10 @@ let morbCostBase = 2;
 let morbCostGeometric = 1.3;
 let morbCostCurrent;
 //let morbCostTotal;
-function morbCostCalculate(){
+function morbCostCalculate() {
     return morbCostCurrent = (Math.floor(morbCostBase * morbCostGeometric ** morbAmount));
 }
 morbCostCalculate();
-
-function updateMorbCostTexts(){
-    return document.getElementById("morb-cost-current").innerHTML = "Cost: " + morbCostCalculate() + " money";
-}
-
 
 let tableBarIncrementing = false;
 let morbBarIncrementing = false;
@@ -211,45 +195,27 @@ function shopInteract(item){
     switch(true){
         case (item === 'table' && tableAmount >= 1 && !tableBarIncrementing):
             tableAmount -= 1;
+            if (tableAmount === 0) {document.getElementById("sell-table-button").disabled = true};
             document.getElementById("table-amount").innerHTML = tableAmount;
             tableBarIncrementing = true;
             return increment(tableInteractDelay, item);
         case (item === 'morb' && moneyAmount >= morbCostCurrent && !morbBarIncrementing):
             moneyAmount -= morbCostCurrent;
+            if (moneyAmount <= morbCostCurrent) {document.getElementById("buy-morb-button").disabled = true};
             document.getElementById("money-amount").innerHTML = moneyAmount;
-            updateMorbCostTexts();
+            document.getElementById("morb-cost-current").innerHTML = "Cost: " + morbCostCalculate() + " money";
             morbBarIncrementing = true;
             return increment(morbInteractDelay, item);
-        case (item === 'table' && tableAmount === 0):
+        case (eval(item + "BarIncrementing")):
             if (previousMessageNumber === 2){
                 logMessage2Repeated += 1;
-                logMessage2.innerHTML = "You don't have any tables          (" + logMessage2Repeated + ")";
-                return document.getElementById('log').prepend(logMessage2);
+                logMessage2.innerHTML = "That bar is currently filling          (" + logMessage2Repeated + ")";
+                return document.getElementsByClassName('log')[0].prepend(logMessage2);
             }
             previousMessageNumber = 2;
             logMessage2Repeated = 1;
-            logMessage2.innerHTML = "You don't have any tables";
-            return document.getElementById('log').prepend(logMessage2);
-        case (item === 'morb' && moneyAmount < morbCostCurrent):
-            if (previousMessageNumber === 3){
-                logMessage3Repeated += 1;
-                logMessage3.innerHTML = "You don't have enough money       (" + logMessage3Repeated + ")";
-                return document.getElementById('log').prepend(logMessage3);
-            }
-            previousMessageNumber = 3;
-            logMessage3Repeated = 1;
-            logMessage3.innerHTML = "You don't have enough money";
-            return document.getElementById('log').prepend(logMessage3);
-        case (eval(item + "BarIncrementing")):
-            if (previousMessageNumber === 4){
-                logMessage4Repeated += 1;
-                logMessage4.innerHTML = "That bar is currently filling          (" + logMessage4Repeated + ")";
-                return document.getElementById('log').prepend(logMessage4);
-            }
-            previousMessageNumber = 4;
-            logMessage4Repeated = 1;
-            logMessage4.innerHTML = "That bar is currently filling";
-            return document.getElementById('log').prepend(logMessage4);
+            logMessage2.innerHTML = "That bar is currently filling";
+            return document.getElementsByClassName('log')[0].prepend(logMessage2);
         default: return console.log('uh oh, shopInteract() failed.');
     }
 }
@@ -266,6 +232,7 @@ function increment(t, item) {
         case (item === "table"):
             tableBarIncrementing = false;
             moneyAmount += 1;
+            if (morbCostCurrent <= moneyAmount) {document.getElementById("buy-morb-button").disabled = false};
             return document.getElementById("money-amount").innerHTML = moneyAmount;
         case (item === "morb"):
             morbBarIncrementing = false;
@@ -289,4 +256,3 @@ function tabLoad(t) {
     return lastTab = t;
 }*/
 }
-console.log(reset())
